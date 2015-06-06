@@ -89,17 +89,8 @@ setTile(x,y-1,z+6,51);
 }
 }
 if(type=="wind") {
-for(var i in all) {
-for(var k=-3;k<3;k++) {
-for(var l=-3;k<3;l++) {
-for(var j=-3;j<3;j++) {
-if(Math.round(Player.getX())+k==Math.round(Entity.getX(all[i]))&&Math.round(Player.getY())+l==
-Math.round(Entity.getY(all[i]))&&Math.round(Player.getZ())+j==Math.round(Entity.getZ(all[i]))) {
-knock(all[i],yaw);
-}
-}
-}
-}
+if(Player.getPointedEntity(getPlayerEnt())>0&&Entity.getEntityTypeId(Player.getPointedEntity(getPlayerEnt()))>0&&Entity.getEntityTypeId(Player.getPointedEntity(getPlayerEnt()))>43) {
+knock(Player.getPointedEntity(getPlayerEnt()),yaw);
 }
 }
 }
@@ -109,10 +100,10 @@ function entityAddedHook(e) {
 all.push(e);
 }
 
-function knock(e,yaw) {
-var velocity = yaw+90;
-var velX = Math.cos(yaw*(Math.PI/180));
-var velZ = Math.sin(yaw*(Math.PI/180));
+function knock(e,yaw1) {
+var velocity = yaw1+90;
+var velX = Math.cos(yaw1*(Math.PI/180));
+var velZ = Math.sin(yaw1*(Math.PI/180));
 setVelX(e, velX*1.5);
 setVelY(e, 1);
 setVelZ(e, velZ*1.5);
