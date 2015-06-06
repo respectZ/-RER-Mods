@@ -90,22 +90,14 @@ setTile(x,y-1,z+6,51);
 }
 if(type=="wind") {
 for(var i in all) {
-if(Entity.getEntityTypeId(Player.getPointedEntity())==all[i]) {
-//var ex = Entity.getX(all[i]);
-//var ey = Entity.getY(all[i]);
-//var ez = Entity.getZ(all[i]);
-var eYaw = getYaw();
-if(yaw>=45&&yaw<=135) {
-knock(all[i],eYaw);
+for(var k=-3;k<3;k++) {
+for(var l=-3;k<3;l++) {
+for(var j=-3;j<3;j++) {
+if(Math.round(Player.getX())+k==Math.round(Entity.getX(all[i]))&&Math.round(Player.getY())+l==
+Math.round(Entity.getY(all[i]))&&Math.round(Player.getZ())+j==Math.round(Entity.getZ(all[i]))) {
+knock(all[i],yaw);
 }
-if(yaw>=135&&yaw<=225) {
-knock(all[i],eYaw);
 }
-if(yaw>=225&&yaw<=315) {
-knock(all[i],eYaw);
-}
-if(yaw>=315||yaw<=45) {
-knock(all[i],eYaw);
 }
 }
 }
@@ -119,8 +111,8 @@ all.push(e);
 
 function knock(e,yaw) {
 var velocity = yaw+90;
-var velX = Math.cos(hit*(Math.PI/180));
-var velZ = Math.sin(hit*(Math.PI/180));
+var velX = Math.cos(yaw*(Math.PI/180));
+var velZ = Math.sin(yaw*(Math.PI/180));
 setVelX(e, velX*1.5);
 setVelY(e, 1);
 setVelZ(e, velZ*1.5);
