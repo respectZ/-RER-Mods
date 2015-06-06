@@ -89,7 +89,7 @@ setTile(x,y-1,z+6,51);
 }
 }
 if(type=="wind") {
-if(Player.getPointedEntity(getPlayerEnt())>0&&Entity.getEntityTypeId(Player.getPointedEntity(getPlayerEnt()))>0&&Entity.getEntityTypeId(Player.getPointedEntity(getPlayerEnt()))>43) {
+if(Player.getPointedEntity(getPlayerEnt())>0&&Entity.getEntityTypeId(Player.getPointedEntity(getPlayerEnt()))>0&&Entity.getEntityTypeId(Player.getPointedEntity(getPlayerEnt()))<43) {
 knock(Player.getPointedEntity(getPlayerEnt()),yaw);
 }
 }
