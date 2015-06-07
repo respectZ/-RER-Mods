@@ -12,6 +12,7 @@ var isFirstTime = 0;
 
 function newLevel () {
        chat("§9Jutsu Mod");
+       chat("§aType §9/juhelp §afor see the commands")
        isPlay=true;
        isFirstTime = ModPE.readData("first");
        if(isFirstTime==0) {
@@ -73,6 +74,9 @@ function procCmd(cmd) {
               } else {
                      chat("§4You don't have enough chakra (Need at least "+fireConst+" chakra)")
               }
+       }
+       if(c[0]=="juhelp") {
+       	chat("§b/chakra §ato see your current chakra\n§b/level §ato see your current level\n§b/fire §ato using fire jutsu")
        }
 }
 
