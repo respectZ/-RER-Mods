@@ -8,12 +8,19 @@ var needToLvlUp = Math.round(currentLevel*3);
 var currentUse = 0;
 var yaw;
 var isPlay = false;
+var isFirstTime = 0;
 
 function newLevel () {
-       chat("§9Jutsu Mod by RedEagleReborn");
+       chat("§9Jutsu Mod");
        isPlay=true;
-       //chakra = ModPE.readData("chakra");
-       chakra = maxChakra;
+       isFirstTime = ModPE.readData("first");
+       if(isFirstTime==0) {
+       	isFirstTime=1;
+       	chakra = maxChakra;
+       }
+       if(isFirstTime==1) {
+       	chakra = ModPE.readData("chakra")
+       }
        currentLevel = ModPE.readData("level")
        fireConst= ModPE.readData("fireconst")
        currentUse = ModPE.readData("use")
@@ -102,12 +109,13 @@ setTile(x,y-1,z+i,51);
 
 function leaveGame() {
        isPlay=false;
-}
-
-function chat(a) {
-       clientMessage("§c[RER] "+a);
        ModPE.saveData("chakra",chakra);
        ModPE.saveData("level",currentLevel)
        ModPE.saveData("fireconst",fireConst)
        ModPE.saveData("use",currentUse)
+       ModPE.saveData("first",isFirstTime)
+}
+
+function chat(a) {
+       clientMessage("§c[RER] "+a);
 }
