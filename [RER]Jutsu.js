@@ -45,7 +45,7 @@ function modTick () {
               needToLvlUp = Math.round(currentLevel*3);
               chat("§bLevel Up ! Increase max chakra and stronger jutsu !");
               chat("§bNow your level is §a"+currentLevel);
-		fireConst = Math.round(maxChakra/3);
+		fireConst = Math.round(maxChakra/3.4);
        }
        yaw = getYaw();
        if(getYaw>360) {
