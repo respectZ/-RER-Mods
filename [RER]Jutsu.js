@@ -12,7 +12,12 @@ var isPlay = false;
 function newLevel () {
        chat("§9Jutsu Mod by RedEagleReborn");
        isPlay=true;
-       chakra = maxChakra;
+       chakra = ModPE.readData("chakra");
+       currentLevel = ModPE.readData("level")
+       fireConst= ModPE.readData("fireconst")
+       currentUse = ModPE.readData("use")
+       maxChakra = currentLevel*250;
+       needToLvlUp = Math.round(currentLevel*3);
 }
 
 function modTick () {
@@ -43,10 +48,10 @@ function modTick () {
 function procCmd(cmd) {
        var c=cmd.split(" ");
        if(c[0]=="chakra") {
-              chat("§aYour Current Chakra Â§9"+chakra);
+              chat("§aYour Current Chakra §9"+chakra);
        }
        if(c[0]=="level") {
-              chat("§aYour Current Level Â§9"+currentLevel)
+              chat("§aYour Current Level §9"+currentLevel)
        }
        if(c[0]=="fire") {
               if(chakra>=fireConst) {
@@ -62,10 +67,8 @@ function procCmd(cmd) {
 
 function Jutsu(type,x,y,z) {
        if(type=="fire") {
-              //clientMessage("JutSuFire")
-                                   Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
 if(yaw>=45&&yaw<=135) {
-       //clientMessage("sembur")
+ Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
 if(getTile(x-1,y-1,z)==0)
 setTile(x-1,y-1,z,51);
 if(getTile(x-2,y-1,z)==0)
@@ -132,5 +135,9 @@ function leaveGame() {
 }
 
 function chat(a) {
-       clientMessage("Â§c[RER] "+a);
+       clientMessage("§c[RER] "+a);
+       ModPE.saveData("chakra",chakra);
+       ModPE.saveData("level",currentLevel)
+       ModPE.saveData("fireconst",fireConst)
+       ModPE.saveData("use",currentUse)
 }
