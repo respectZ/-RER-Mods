@@ -33,7 +33,7 @@ function modTick () {
        }
 }
 
-function procCmd() {
+function procCmd(cmd) {
        var c=cmd.split(" ");
        if(c[0]=="chakra") {
               chat("Â§aYour Current Chakra Â§9"+chakra);
