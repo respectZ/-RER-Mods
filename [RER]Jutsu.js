@@ -76,39 +76,54 @@ function procCmd(cmd) {
                      chat("§4You don't have enough chakra (Need at least "+fireConst+" chakra)")
               }
        }
+       if(c[0]=="water") {
+       	if(chakra>=fireConst) {
+       		Jutsu("water",Player.getX(),Player.getY(),Player.getZ())
+       		needToLvlUp =parseInt(needToLvlUp-1);
+       		chakra =parseInt(chakra-fireConst)
+       	} else {
+       	            chat("§4You don't have enough chakra (Need at least "+fireConst+" chakra)")	
+       	}
+       }
        if(c[0]=="juhelp") {
        	chat("§fJutsu Help Page\n§b/chakra §ato see your current chakra\n§b/level §ato see your current level\n§b/fire §ato using fire jutsu")
        }
 }
 
 function Jutsu(type,x,y,z) {
-       if(type=="fire") {
+	var blockId;
+       if(type=="fire"||type=="water") {
+       	if(type=="fire") {
+       	blockId = 51;
+       	} else if(type=="water") {
+       		blockId = 8;
+       	}
 if(yaw>=45&&yaw<=135) {
-Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
+//Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
 for(var i=1;i<=currentLevel*2+1;i++) {
 if(getTile(x-i,y-1,z)==0)
-setTile(x-i,y-1,z,51);
+setTile(x-i,y-1,z,blockId);
 }
 }
 if(yaw>=135&&yaw<=225) {
-Level.addParticle(ParticleType.flamme,x,y,z-1,0,0,0,5);
+//Level.addParticle(ParticleType.flamme,x,y,z-1,0,0,0,5);
 for(var i=1;i<=currentLevel*2+1;i++) {
 if(getTile(x,y-1,z-i)==0)
-setTile(x,y-1,z-i,51);
+setTile(x,y-1,z-i,blockId);
 }
 }
 if(yaw>=225&&yaw<=315) {
-Level.addParticle(ParticleType.flamme,x+1,y,z,0,0,0,5);
+//Level.addParticle(ParticleType.flamme,x+1,y,z,0,0,0,5);
 for(var i=1;i<=currentLevel*2+1;i++) {
 if(getTile(x+i,y-1,z)==0)
-setTile(x+i,y-1,z,51);
+setTile(x+i,y-1,z,blockId);
 }
 }
 if(yaw>=315||yaw<=45) {
-                     Level.addParticle(ParticleType.flamme,x,y,z+1,0,0,0,5);
+ //                    Level.addParticle(ParticleType.flamme,x,y,z+1,0,0,0,5);
 for(var i=1;i<=currentLevel*2+1;i++) {
 if(getTile(x,y-1,z+i)==0)
-setTile(x,y-1,z+i,51);
+setTile(x,y-1,z+i,blockId);
 }
 }
 }
