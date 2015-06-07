@@ -14,17 +14,17 @@ function newLevel () {
        chat("§9Jutsu Mod");
        chat("§aType §9/juhelp §afor see the commands")
        isPlay=true;
-       isFirstTime = ModPE.readData("first");
+       isFirstTime = ModPE.readData("firsttime");
        if(isFirstTime==0) {
        	isFirstTime=1;
        	chakra = maxChakra;
        }
        if(isFirstTime==1) {
-       	chakra = ModPE.readData("chakra")
+       	chakra = ModPE.readData("currentchakra")
        }
-       currentLevel = ModPE.readData("level")
+       currentLevel = ModPE.readData("currentlevel")
        fireConst= ModPE.readData("fireconst")
-       currentUse = ModPE.readData("use")
+       currentUse = ModPE.readData("currentuse")
        maxChakra = currentLevel*250;
        needToLvlUp = Math.round(currentLevel*3);
 }
@@ -115,11 +115,11 @@ setTile(x,y-1,z+i,51);
 
 function leaveGame() {
        isPlay=false;
-       ModPE.saveData("chakra",chakra);
-       ModPE.saveData("level",currentLevel)
+       ModPE.saveData("currentchakra",chakra);
+       ModPE.saveData("currentlevel",currentLevel)
        ModPE.saveData("fireconst",fireConst)
-       ModPE.saveData("use",currentUse)
-       ModPE.saveData("first",isFirstTime)
+       ModPE.saveData("currentuse",currentUse)
+       ModPE.saveData("firsttime",isFirstTime)
 }
 
 function chat(a) {
