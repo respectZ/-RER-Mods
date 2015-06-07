@@ -39,7 +39,7 @@ function modTick () {
               }
        }
        if(needToLvlUp<=0) {
-              currentLevel +=1;
+              currentLevel =parseInt(currentLevel+1);;
               maxChakra = currentLevel*250;
               chakra = maxChakra;
               needToLvlUp = Math.round(currentLevel*3);
