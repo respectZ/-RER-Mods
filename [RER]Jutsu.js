@@ -25,7 +25,7 @@ function modTick () {
               tick--;
               if(chakra<maxChakra&&tick<=0) {
                      tick = 40;
-                     chakra +=1;
+                     chakra += currentLevel*2;
               }
        }
        if(currentUse==needToLvlUp) {
@@ -33,8 +33,9 @@ function modTick () {
               maxChakra = currentLevel*250;
               chakra = maxChakra;
               needToLvlUp = Math.round(currentLevel*3);
-              chat("§bLevel Up !");
+              chat("§bLevel Up ! Increase max chakra and stronger jutsu !");
               chat("§bNow your level is §a"+currentLevel);
+		fireConst = Math.round(maxChakra/3+(currentLevel*2.5));
        }
        yaw = getYaw();
        if(getYaw>360) {
@@ -68,64 +69,32 @@ function procCmd(cmd) {
 function Jutsu(type,x,y,z) {
        if(type=="fire") {
 if(yaw>=45&&yaw<=135) {
- Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
-if(getTile(x-1,y-1,z)==0)
-setTile(x-1,y-1,z,51);
-if(getTile(x-2,y-1,z)==0)
-setTile(x-2,y-1,z,51);
-if(getTile(x-3,y-1,z)==0)
-setTile(x-3,y-1,z,51);
-if(getTile(x-4,y-1,z)==0)
-setTile(x-4,y-1,z,51);
-if(getTile(x-5,y-1,z)==0)
-setTile(x-5,y-1,z,51);
-if(getTile(x-6,y-1,z)==0)
-setTile(x-6,y-1,z,51);
+Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
+for(var i=1;i<=currentLevel*2+1;i++) {
+if(getTile(x-i,y-1,z)==0)
+setTile(x-i,y-1,z,51);
+}
 }
 if(yaw>=135&&yaw<=225) {
-                     Level.addParticle(ParticleType.flamme,x,y,z-1,0,0,0,5);
-if(getTile(x,y-1,z-1)==0)
-setTile(x,y-1,z-1,51);
-if(getTile(x,y-1,z-2)==0)
-setTile(x,y-1,z-2,51);
-if(getTile(x,y-1,z-3)==0)
-setTile(x,y-1,z-3,51);
-if(getTile(x,y-1,z-4)==0)
-setTile(x,y-1,z-4,51);
-if(getTile(x,y-1,z-5)==0)
-setTile(x,y-1,z-5,51);
-if(getTile(x,y-1,z-6)==0)
-setTile(x,y-1,z-6,51);
+Level.addParticle(ParticleType.flamme,x,y,z-1,0,0,0,5);
+for(var i=1;i<=currentLevel*2+1;i++) {
+if(getTile(x,y-1,z-i)==0)
+setTile(x,y-1,z-i,51);
+}
 }
 if(yaw>=225&&yaw<=315) {
-                     Level.addParticle(ParticleType.flamme,x+1,y,z,0,0,0,5);
-if(getTile(x+1,y-1,z)==0)
-setTile(x+1,y-1,z,51);
-if(getTile(x+2,y-1,z)==0)
-setTile(x+2,y-1,z,51);
-if(getTile(x+3,y-1,z)==0)
-setTile(x+3,y-1,z,51);
-if(getTile(x+4,y-1,z)==0)
-setTile(x+4,y-1,z,51);
-if(getTile(x+5,y-1,z)==0)
-setTile(x+5,y-1,z,51);
-if(getTile(x+6,y-1,z)==0)
-setTile(x+6,y-1,z,51);
+Level.addParticle(ParticleType.flamme,x+1,y,z,0,0,0,5);
+for(var i=1;i<=currentLevel*2+1;i++) {
+if(getTile(x+i,y-1,z)==0)
+setTile(x+i,y-1,z,51);
+}
 }
 if(yaw>=315||yaw<=45) {
                      Level.addParticle(ParticleType.flamme,x,y,z+1,0,0,0,5);
-if(getTile(x,y-1,z+1)==0)
-setTile(x,y-1,z+1,51);
-if(getTile(x,y-1,z+2)==0)
-setTile(x,y-1,z+2,51);
-if(getTile(x,y-1,z+3)==0)
-setTile(x,y-1,z+3,51);
-if(getTile(x,y-1,z+4)==0)
-setTile(x,y-1,z+4,51);
-if(getTile(x,y-1,z+5)==0)
-setTile(x,y-1,z+5,51);
-if(getTile(x,y-1,z+6)==0)
-setTile(x,y-1,z+6,51);
+for(var i=1;i<=currentLevel*2+1;i++) {
+if(getTile(x,y-1,z+i)==0)
+setTile(x,y-1,z+i,51);
+}
 }
 }
 }
