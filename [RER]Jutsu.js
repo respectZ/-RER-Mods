@@ -5,7 +5,7 @@ var maxChakra = currentLevel*250;
 var fireConst = 100;
 var firetick = [];
 var needToLvlUp = Math.round(currentLevel*3);
-var currentUse = 0;
+//var currentUse = 0;
 var yaw;
 var isPlay = false;
 var isFirstTime = 0;
@@ -18,13 +18,14 @@ function newLevel () {
        if(isFirstTime==0) {
        	isFirstTime=1;
        	chakra = maxChakra;
+       	currentLevel = 1;
        }
        if(isFirstTime==1) {
        	chakra = ModPE.readData("currentchakra")
+       	currentLevel = ModPE.readData("currentlevel")
        }
-       currentLevel = ModPE.readData("currentlevel")
        fireConst= ModPE.readData("fireconst")
-       currentUse = ModPE.readData("currentuse")
+       //currentUse = ModPE.readData("currentuse")
        maxChakra = currentLevel*250;
        needToLvlUp = Math.round(currentLevel*3);
 }
@@ -37,7 +38,7 @@ function modTick () {
                      chakra += currentLevel*2;
               }
        }
-       if(currentUse=>needToLvlUp) {
+       if(needToLvlUp<=0) {
               currentLevel +=1;
               maxChakra = currentLevel*250;
               chakra = maxChakra;
@@ -68,15 +69,15 @@ function procCmd(cmd) {
        if(c[0]=="fire") {
               if(chakra>=fireConst) {
                      Jutsu("fire",Player.getX(),Player.getY(),Player.getZ());
-                     currentUse +=1;
-                     chakra -=fireConst;
+                     needToLvlUp =parseInt(needToLvlUp-1);
+                     chakra =parseInt(chakra-fireConst);
               chat("§6Fire Jutsu !")
               } else {
                      chat("§4You don't have enough chakra (Need at least "+fireConst+" chakra)")
               }
        }
        if(c[0]=="juhelp") {
-       	chat("§b/chakra §ato see your current chakra\n§b/level §ato see your current level\n§b/fire §ato using fire jutsu")
+       	chat("§fJutsu Help Page\n§b/chakra §ato see your current chakra\n§b/level §ato see your current level\n§b/fire §ato using fire jutsu")
        }
 }
 
@@ -118,7 +119,7 @@ function leaveGame() {
        ModPE.saveData("currentchakra",chakra);
        ModPE.saveData("currentlevel",currentLevel)
        ModPE.saveData("fireconst",fireConst)
-       ModPE.saveData("currentuse",currentUse)
+       //ModPE.saveData("currentuse",currentUse)
        ModPE.saveData("firsttime",isFirstTime)
 }
 
