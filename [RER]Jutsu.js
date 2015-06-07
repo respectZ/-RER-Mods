@@ -37,7 +37,7 @@ function modTick () {
                      chakra += currentLevel*2;
               }
        }
-       if(currentUse==needToLvlUp) {
+       if(currentUse=>needToLvlUp) {
               currentLevel +=1;
               maxChakra = currentLevel*250;
               chakra = maxChakra;
