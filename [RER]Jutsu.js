@@ -29,7 +29,14 @@ function modTick () {
               chakra = maxChakra;
               needToLvlUp = Math.round(currentLevel*3);
               chat("§bLevel Up !");
-              chat("§bNow your level is Â§a"+currentLevel);
+              chat("§bNow your level is §a"+currentLevel);
+       }
+       yaw = getYaw();
+       if(getYaw>360) {
+              yaw -=360;
+       }
+       if(getYaw<0) {
+              yaw +=360;
        }
 }
 
@@ -48,17 +55,17 @@ function procCmd(cmd) {
                      chakra -=fireConst;
               chat("§6Fire Jutsu !")
               } else {
-                     chat("Â§4You don't have enough chakra")
+                     chat("§4You don't have enough chakra")
               }
        }
 }
 
 function Jutsu(type,x,y,z) {
        if(type=="fire") {
-              clientMessage("JutSuFire")
+              //clientMessage("JutSuFire")
+                                   Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
 if(yaw>=45&&yaw<=135) {
-       clientMessage("sembur")
-                     Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
+       //clientMessage("sembur")
 if(getTile(x-1,y-1,z)==0)
 setTile(x-1,y-1,z,51);
 if(getTile(x-2,y-1,z)==0)
