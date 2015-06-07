@@ -12,7 +12,8 @@ var isPlay = false;
 function newLevel () {
        chat("§9Jutsu Mod by RedEagleReborn");
        isPlay=true;
-       chakra = ModPE.readData("chakra");
+       //chakra = ModPE.readData("chakra");
+       chakra = maxChakra;
        currentLevel = ModPE.readData("level")
        fireConst= ModPE.readData("fireconst")
        currentUse = ModPE.readData("use")
@@ -35,7 +36,7 @@ function modTick () {
               needToLvlUp = Math.round(currentLevel*3);
               chat("§bLevel Up ! Increase max chakra and stronger jutsu !");
               chat("§bNow your level is §a"+currentLevel);
-		fireConst = Math.round(maxChakra/3+(currentLevel*2.5));
+		fireConst = Math.round(maxChakra/3);
        }
        yaw = getYaw();
        if(getYaw>360) {
