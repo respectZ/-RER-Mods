@@ -23,7 +23,7 @@ function modTick () {
                      chakra +=1;
               }
        }
-       if(currentUse=="needToLvlUp") {
+       if(currentUse==needToLvlUp) {
               currentLevel +=1;
               maxChakra = currentLevel*250;
               chakra = maxChakra;
@@ -44,6 +44,7 @@ function procCmd(cmd) {
        if(c[0]=="fire") {
               if(chakra>=fireConst) {
                      Jutsu(c[0],Player.getX(),Player.getY(),Player.getZ());
+                     currentUse +=1;
               chat("Â§6Fire Jutsu !")
               } else {
                      chat("Â§4You don't have enough chakra")
