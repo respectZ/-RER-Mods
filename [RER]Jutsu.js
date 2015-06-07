@@ -10,7 +10,7 @@ var yaw;
 var isPlay = false;
 
 function newLevel () {
-       chat("Â§9Jutsu Mod by RedEagleReborn");
+       chat("§9Jutsu Mod by RedEagleReborn");
        isPlay=true;
        chakra = maxChakra;
 }
@@ -28,24 +28,25 @@ function modTick () {
               maxChakra = currentLevel*250;
               chakra = maxChakra;
               needToLvlUp = Math.round(currentLevel*3);
-              chat("Â§bLevel Up !");
-              chat("Â§bNow your level is Â§a"+currentLevel);
+              chat("§bLevel Up !");
+              chat("§bNow your level is Â§a"+currentLevel);
        }
 }
 
 function procCmd(cmd) {
        var c=cmd.split(" ");
        if(c[0]=="chakra") {
-              chat("Â§aYour Current Chakra Â§9"+chakra);
+              chat("§aYour Current Chakra Â§9"+chakra);
        }
        if(c[0]=="level") {
-              chat("Â§aYour Current Level Â§9"+currentLevel)
+              chat("§aYour Current Level Â§9"+currentLevel)
        }
        if(c[0]=="fire") {
               if(chakra>=fireConst) {
-                     Jutsu(c[0],Player.getX(),Player.getY(),Player.getZ());
+                     Jutsu("fire",Player.getX(),Player.getY(),Player.getZ());
                      currentUse +=1;
-              chat("Â§6Fire Jutsu !")
+                     chakra -=fireConst;
+              chat("§6Fire Jutsu !")
               } else {
                      chat("Â§4You don't have enough chakra")
               }
@@ -54,7 +55,9 @@ function procCmd(cmd) {
 
 function Jutsu(type,x,y,z) {
        if(type=="fire") {
+              clientMessage("JutSuFire")
 if(yaw>=45&&yaw<=135) {
+       clientMessage("sembur")
                      Level.addParticle(ParticleType.flamme,x-1,y,z,0,0,0,5);
 if(getTile(x-1,y-1,z)==0)
 setTile(x-1,y-1,z,51);
