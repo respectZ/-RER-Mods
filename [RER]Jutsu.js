@@ -63,7 +63,7 @@ function procCmd(cmd) {
        }
        if(c[0]=="level") {
               chat("§aYour Current Level §9"+currentLevel)
-              var needed = needToLvlUp-currentUse;
+              var needed = needToLvlUp;
               chat("§aYou need using jutsu " +needed+ " time(s) to level up")
        }
        if(c[0]=="fire") {
