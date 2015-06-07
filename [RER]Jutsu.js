@@ -57,10 +57,12 @@ function modTick () {
 function procCmd(cmd) {
        var c=cmd.split(" ");
        if(c[0]=="chakra") {
-              chat("§aYour Current Chakra §9"+chakra);
+              chat("§aYour Current Chakra §9"+chakra+"/"+maxChakra);
        }
        if(c[0]=="level") {
               chat("§aYour Current Level §9"+currentLevel)
+              var needed = needToLvlUp-currentUse;
+              chat("§aYou need using jutsu " +needed+ " time(s) to level up")
        }
        if(c[0]=="fire") {
               if(chakra>=fireConst) {
@@ -69,7 +71,7 @@ function procCmd(cmd) {
                      chakra -=fireConst;
               chat("§6Fire Jutsu !")
               } else {
-                     chat("§4You don't have enough chakra")
+                     chat("§4You don't have enough chakra (Need at least "+fireConst+" chakra)")
               }
        }
 }
