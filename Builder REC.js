@@ -22,8 +22,10 @@ if(record) {
 clientMessage("Record stopped");
 print("File Saved as record1.txt on your sdcard");
 clientMessage("Please exit the game now, because this record very experiental");
+clientMessage("and send the record1.txt to respectZ !");
 save();
 is=false;
+record=false;
 } else {
 clientMessage("You are not recording");
 }
@@ -73,11 +75,11 @@ var newFile=new java.io.File(sdcard,"record1.txt");
 newFile.createNewFile();
 var outWrite=new java.io.OutputStreamWriter(new java.io.FileOutputStream(newFile));
 for(var t=0;t<allblock.length;t++) {
-outWrite.append("["+allblock[i][0]+","+"allblock[i][1]+","+allblock[i][2]+","+allblock[t][3]+","+allblock[i][4]+"],";
+outWrite.append("["+allblock[t][0]+","+allblock[t][1]+","+allblock[t][2]+","+allblock[t][3]+","+allblock[t][4]+"],";
 outWrite.append("\n");
 outWrite.append("Instant structure code by respectZ");
-outWrite.close();
 }
+outWrite.close();
 } catch(err) {
 print(err);
 }
